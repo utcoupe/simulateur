@@ -30,9 +30,9 @@ sys.path.append(os.path.join(DIR_PATH, "..", "lib"))
 import optparse
 import threading
 import time
-#import zmq
+import zmq
 
-#import zerobot
+import zerobot
 import utcoupe
 
 from simu import *
@@ -73,15 +73,15 @@ if __name__ == "__main__":
         debug = Debug()
 
         # Store server info
-        """server = utcoupe.Server(server = options.server_ip,
+        server = utcoupe.Server(server = options.server_ip,
                                 frontend = options.port_frontend,
                                 backend = options.port_backend,
                                 ev_push = options.port_ev_push,
-                                ev_sub = options.port_ev_sub)"""
+                                ev_sub = options.port_ev_sub)
 
         # Create services on demand
-        """ctx = zmq.Context(1)
-        services = utcoupe.ServicesManager(server, ctx)"""
+        ctx = zmq.Context(1)
+        services = utcoupe.ServicesManager(server, ctx)
 
         # robots
         bigrobot = BigRobot(engine = engine,
@@ -91,14 +91,14 @@ if __name__ == "__main__":
                             others = utcoupe.OTHERS_BIG,
                             visio = utcoupe.VISIO_BIG,
                             match = match,
-                            """services = services""")
+                            services = services)
         minirobot = MiniRobot(engine = engine,
                               posinit = mm_to_px(225, 300),
                               team = BLUE,
                               asserv = utcoupe.ASSERV_MINI,
                               others = utcoupe.OTHERS_MINI,
                               match = match,
-                              """services = services""")
+                              services = services)
         bigrobot2 = BigRobot(engine = engine,
                              posinit = mm_to_px(3000-250,250),
                              team = RED,
@@ -106,7 +106,7 @@ if __name__ == "__main__":
                              others = utcoupe.OTHERS_BIG_ENEMY,
                              visio = utcoupe.VISIO_BIG_ENEMY,
                              match = match,
-                             """services = services""")
+                             services = services)
         minirobot2 = MiniRobot(engine = engine,
                                posinit = mm_to_px(3000-400,250),
                                team = RED,
